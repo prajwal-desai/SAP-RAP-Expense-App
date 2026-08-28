@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Expense',
+                typeNamePlural: 'Expenses',
+                title: { type: #STANDARD, value: 'Description' } } }
+annotate view ZC_Expense with
+{
+  @UI.facet: [ { id: 'Expense',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Expense Details',
+                 position: 10 } ]
+
+  @UI.hidden: true
+  ExpenseUUID;
+
+  @UI: { lineItem:       [ { position: 10 } ],
+         identification: [ { position: 10 } ],
+         selectionField: [ { position: 10 } ] }
+  ExpenseID;
+
+  @UI: { lineItem:       [ { position: 20 } ],
+         identification: [ { position: 20 } ],
+         selectionField: [ { position: 20 } ] }
+  EmployeeID;
+
+  @UI: { lineItem:       [ { position: 30 } ],
+         identification: [ { position: 30 } ] }
+  Description;
+
+  @UI: { lineItem:       [ { position: 40 } ],
+         identification: [ { position: 40 } ] }
+  Amount;
+
+  @UI: { lineItem:       [ { position: 50 },
+                           { type: #FOR_ACTION, dataAction: 'ApproveExpense', label: 'Approve' },
+                           { type: #FOR_ACTION, dataAction: 'RejectExpense', label: 'Reject' } ],
+         identification: [ { position: 50 },
+                           { type: #FOR_ACTION, dataAction: 'ApproveExpense', label: 'Approve' },
+                           { type: #FOR_ACTION, dataAction: 'RejectExpense', label: 'Reject' } ] }
+  Status;
+}
