@@ -1,0 +1,21 @@
+@EndUserText.label: 'Projection View for Expense'
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@Search.searchable: true
+@Metadata.allowExtensions: true
+define root view entity ZC_Expense 
+  as projection on ZI_Expense
+{
+  key ExpenseUUID,
+  @Search.defaultSearchElement: true
+  ExpenseID,
+  @Search.defaultSearchElement: true
+  EmployeeID,
+  Description,
+  Amount,
+  Currency,
+  Status,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt
+}
