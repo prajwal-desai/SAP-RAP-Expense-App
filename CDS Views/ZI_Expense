@@ -1,0 +1,23 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Base CDS View for Expenses'
+define root view entity ZI_Expense 
+  as select from zrap_expense
+{
+  key exp_uuid as ExpenseUUID,
+  expense_id as ExpenseID,
+  employee_id as EmployeeID,
+  description as Description,
+  @Semantics.amount.currencyCode: 'Currency'
+  amount as Amount,
+  currency as Currency,
+  status as Status,
+  
+  @Semantics.user.createdBy: true
+  created_by as CreatedBy,
+  @Semantics.systemDateTime.createdAt: true
+  created_at as CreatedAt,
+  @Semantics.user.lastChangedBy: true
+  last_changed_by as LastChangedBy,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  last_changed_at as LastChangedAt
+}
