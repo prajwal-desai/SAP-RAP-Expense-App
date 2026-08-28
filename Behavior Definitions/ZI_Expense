@@ -1,0 +1,23 @@
+managed implementation in class zbp_i_expense unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_Expense alias Expense
+persistent table zrap_expense
+draft table zrap_exp_draft // Put cursor here and press Ctrl+1 to auto-generate this table
+lock master total etag LastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) ExpenseUUID;
+  field ( readonly ) ExpenseID, Status, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+
+  action ( features : instance ) ApproveExpense result [1] $self;
+  action ( features : instance ) RejectExpense result [1] $self;
+
+  determination setInitialStatus on modify { create; }
+  validation validateAmount on save { field Amount; create; update; }
+}
