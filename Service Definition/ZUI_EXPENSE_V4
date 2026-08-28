@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Expense App'
+define service ZUI_EXPENSE_V4 {
+  expose ZC_Expense as Expense;
+}
